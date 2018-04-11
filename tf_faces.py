@@ -260,8 +260,6 @@ def generate_conv4_act(act):
         for image in act[actor]:
             image = image.astype(float32)
             conv4_out = sess.run(conv4,feed_dict={x:image})
-            print conv4_out.shape
-            sys.exit()
             conv4_act[actor].append(conv4_out.flatten())
     
     return conv4_act
