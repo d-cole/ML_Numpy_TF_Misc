@@ -14,6 +14,9 @@ K-NN classifier using numpy.
 ### cnn.py
 Convolutional neural net from coursework. Backward pass equations for convolutional layer and momentum weight update implemented.
 
+## CNN_defEstimator_tf.py
+CNN on MNIST using high-level tensorflow Estimator API
+
 ### tf_faces.py
 Fully connected NN for facial classification using numpy. Transfer learning from conv4 layer of alexnet (in tensorflow) also implemented.
 

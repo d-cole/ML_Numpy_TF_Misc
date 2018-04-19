@@ -52,7 +52,7 @@ def cost(y, y_):
 
 
 def deriv_multilayer(W0, b0, W1, b1, x, L0, L1, y, y_):
-    '''Incomplete function for computing the gradient of the cross-entropy
+    '''Function for computing the gradient of the cross-entropy
     cost function w.r.t the parameters of a neural network'''
 
     B1_sum = np.ones((x.shape[0],1))        
@@ -109,8 +109,6 @@ def make_plot(fig_num,x_vals,y_vals,x_label,y_label,filename,in_label,lim_y):
     """ 
     Plot the given data with axis labels. Legend/data labels optional.
     Saves the image as the file specified by filename
-
-    *From A1 code
     """
 
     fig = figure(fig_num)  
@@ -168,10 +166,14 @@ def plot_part5_9(y,y_,X,iterations,test_performance,test_prob,train_performance,
     plot_subplot(1,10,np.vstack(incorr_digits[0:10]).T,file_prefix + "_incorr.png")
      
     #Plot performance & cost
-    make_plot(fig_num,iterations,test_performance,"Iterations","Performance on test set",file_prefix + "_test_perf.png",None,True) 
-    make_plot(fig_num+10,iterations,test_prob,"Iterations","Cost",file_prefix + "_test_perfCost.png",None,False)
-    make_plot(fig_num+3,iterations,train_performance,"Iterations","Performance on test set",file_prefix + "_train_perf.png",None,True) 
-    make_plot(fig_num+50,iterations,train_prob,"Iterations","Cost",file_prefix + "_train_perfCost.png",None,False)
+    make_plot(fig_num,iterations,test_performance,"Iterations",
+        "Performance on test set",file_prefix + "_test_perf.png",None,True) 
+    make_plot(fig_num+10,iterations,test_prob,"Iterations",
+        "Cost",file_prefix + "_test_perfCost.png",None,False)
+    make_plot(fig_num+3,iterations,train_performance,"Iterations",
+        "Performance on test set",file_prefix + "_train_perf.png",None,True) 
+    make_plot(fig_num+50,iterations,train_prob,"Iterations",
+        "Cost",file_prefix + "_train_perfCost.png",None,False)
 
 
 def part2(x,W,b):
@@ -308,7 +310,7 @@ def part5(training_set,test_set):
     """
     Minimizes cost function use mini-batch gradient descent.
     """
-    batchsize = 5 #Per number - 50 total
+    batchsize = 5 
 
     #Add array to track iterations and performance on train & test set
     iterations = []
@@ -331,8 +333,8 @@ def part5(training_set,test_set):
     W = np.random.rand(10,784)*0.0001 
     b = np.random.rand(10,1)*0.0
     test_perf = 0     
+
     #Removed performance < 0.95
-    #TODO fix iteration max
     while(test_perf < 0.89):
         iteration = 0
         batch_start_pos = 0
