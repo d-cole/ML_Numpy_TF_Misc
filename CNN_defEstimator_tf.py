@@ -15,7 +15,7 @@ def cnn_model_fn(features, labels, mode):
     
     #Input layer
     # Batch size -1 -> dynamically computed based on # input values in features["x"]
-    input_layer = tf.reshape(features["x"], [-1, 28, 28, 1])
+    input_layer = tf.reshape(features["x"], [-1, 28, 28, 1], name="Input_layer")
 
     #Conv1
     conv1 = tf.layers.conv2d(
@@ -40,10 +40,10 @@ def cnn_model_fn(features, labels, mode):
     pool2 = tf.layers.max_pooling2d(inputs = conv2, pool_size=[2,2], strides=2)
 
     #Dense layer
-    pool2_flat = tf.reshape(pool2, [-1, 7*7*65])
+    pool2_flat = tf.reshape(pool2, [-1, 7*7*64])
     dense = tf.layers.dense(inputs=pool2_flat, units=1024, activation=tf.nn.relu)
     dropout = tf.layers.dropout(
-        inputs=dense, rate=0.4, training=mode == tf.estimator.Mode.Keys.TRAIN)
+        inputs=dense, rate=0.4, training=mode == tf.estimator.ModeKeys.TRAIN)
 
     #Logits
     logits = tf.layers.dense(inputs=dropout, units=10)
@@ -77,11 +77,12 @@ def cnn_model_fn(features, labels, mode):
 def main(unused_argv):
     #Load traniing and eval data
     mnist = tf.contrib.learn.datasets.load_dataset("mnist")
+#    from tensorflow.examples.tutorials.mnist import input_data
+#    mnist = input_data.read_data_sets("MNIST_data", one_hot=True)
     train_data = mnist.train.images
     train_labels = np.asarray(mnist.train.labels, dtype=np.int32)
     eval_data = mnist.test.images
     eval_labels = np.asarray(mnist.test.labels, dtype=np.int32)
-
 
     mnist_classifier = tf.estimator.Estimator(
         model_fn = cnn_model_fn, model_dir="/tmp/mnist_convnet_model")
