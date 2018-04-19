@@ -3,7 +3,7 @@
 Repository for old numpy/tf ML scripts.
 
 ### digits.py
- Implementation and training of fully connected neural network using numpy. Calculation of gradients SGD implemented manually.
+ Implementation and training of fully connected neural network using numpy. Calculation of gradients and SGD implemented manually.
 
 ### logistic.py
  Implementation of classic logistic classifier using numpy. Calculation of negative log likelihood and weight derivatives done manually.
